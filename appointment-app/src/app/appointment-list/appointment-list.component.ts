@@ -1,20 +1,30 @@
 import { Component } from '@angular/core';
-import { Appointment } from '../models/appointment'
+import { Appointment } from '../models/appointment';
 
 @Component({
   selector: 'app-appointment-list',
   templateUrl: './appointment-list.component.html',
-  styleUrls: ['./appointment-list.component.css']
+  styleUrls: ['./appointment-list.component.css'],
 })
 export class AppointmentListComponent {
-  
-  newAppointmentTitle:String=""
-  newAppointmentDate:Date= new Date();
-  
-  appointments:Appointment[] = []
+  newAppointmentTitle: string = '';
+  newAppointmentDate: Date = new Date();
 
-  addAppointment(){
-    alert(this.newAppointmentTitle+" "+this.newAppointmentDate);
+  appointments: Appointment[] = [];
+
+  addAppointment() {
+    if (this.newAppointmentTitle.trim().length > 0 && this.newAppointmentDate) {
+      let newAppointment: Appointment = {
+        id: Date.now(),
+        title: this.newAppointmentTitle,
+        date: this.newAppointmentDate,
+      };
+      this.appointments.push(newAppointment);
+
+      this.newAppointmentTitle="";
+      this.newAppointmentDate = new Date();
+
+      alert(this.appointments.length);
+    }
   }
-  
 }
