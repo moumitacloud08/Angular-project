@@ -8,10 +8,14 @@ import { Reservation } from '../models/reservation';
   styleUrls: ['./reservation-list.component.css'],
 })
 export class ReservationListComponent {
+  [x: string]: any;
   reservations: Reservation[] = [];
   constructor(private reservationService: ReservationService) {}
 
   ngOnInit(): void {
     this.reservations = this.reservationService.getRerservations();
+  }
+  deleteReservation(id: string) {
+    this.reservationService.deleteReservation(id);
   }
 }
