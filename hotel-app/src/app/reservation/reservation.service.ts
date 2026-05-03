@@ -33,10 +33,8 @@ export class ReservationService {
     localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }
 
-  updateReservation(updateReservation: Reservation) {
-    let index = this.reservations.findIndex(
-      (res) => res.id == updateReservation.id,
-    );
+  updateReservation(id: string, updateReservation: Reservation) {
+    let index = this.reservations.findIndex((res) => res.id == id);
     this.reservations[index] = updateReservation;
     localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }
